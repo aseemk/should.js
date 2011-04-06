@@ -52,19 +52,27 @@ our dummy getters such as _and_ also help express chaining:
 
     user.should.be.a('object').and.have.property('name', 'tj')
 
-## ok
+## truthy
 
 Assert truthfulness:
 
-    true.should.be.ok
-    'yay'.should.be.ok
-    (1).should.be.ok
+    true.should.be.truthy
+    'yay'.should.be.truthy
+    (1).should.be.truthy
 
-or negated:
+Aliases: _ok_
+
+## falsy
+
+The negation of _truthy_:
+
+    false.should.be.falsy
+    ''.should.be.falsy
+    (0).should.be.falsy
+
+Aliases: _not.ok_
 
     false.should.not.be.ok
-    ''.should.not.be.ok
-    (0).should.not.be.ok
 
 ## true
 
