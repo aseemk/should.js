@@ -141,6 +141,23 @@ module.exports = {
     }, "expected 'foobar' not to match /^foo/i");
   },
   
+  'test match(obj)': function(){
+    ({ foo: 'bar' }).should.match({ foo: 'bar' });
+    [1,2,3].should.not.match([4,5,6]);
+    
+    // string to non-regexp should work
+    'test'.should.match('test');
+    '4'.should.match(4);
+    
+    err(function(){
+      (4).should.mirror(3);
+    }, 'expected 4 to mirror 3');
+    
+    err(function(){
+      "foobar".should.match("foo");
+    }, "expected 'foobar' to match 'foo'");
+  },
+  
   'test length(n)': function(){
     'test'.should.have.length(4);
     'test'.should.not.have.length(3);
@@ -168,13 +185,22 @@ module.exports = {
   
   'test mirror(val)': function(){
     'test'.should.mirror('test');
-    ({ foo: 'bar' }).should.mirror({ foo: 'bar' });
     (1).should.mirror(1);
     '4'.should.mirror(4);
+    
+    ({ foo: 'bar' }).should.mirror({ foo: 'bar' });
+    [1,2,3].should.match([1,2,3]);
+    
+    ({ foo: 'bar' }).should.not.match({ foo: 'baz' });
+    [1,2,3].should.not.match([4,5,6]);
     
     err(function(){
       (4).should.mirror(3);
     }, 'expected 4 to mirror 3');
+    
+    err(function(){
+      [1,2,3].should.mirror([4,5,6]);
+    }, 'expected [ 1, 2, 3 ] to mirror [ 4, 5, 6 ]');
   },
   
   'test equal(val)': function(){
