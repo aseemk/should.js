@@ -96,9 +96,14 @@ Asserts that length is 0:
     ''.should.be.empty
     ({ length: 0 }).should.be.empty
 
-## eql
+## mirror
 
-equality:
+deep equality:
+
+    ({ foo: 'bar' }).should.mirror({ foo: 'bar' })
+    [1,2,3].should.mirror([1,2,3])
+
+Aliases: _eql_ (deprecated)
 
     ({ foo: 'bar' }).should.eql({ foo: 'bar' })
     [1,2,3].should.eql([1,2,3])
