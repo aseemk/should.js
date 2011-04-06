@@ -39,6 +39,21 @@ module.exports = {
     }, "expected 'test' to be true")
   },
   
+  'test truthy': function(){
+    true.should.be.truthy;
+    false.should.not.be.truthy;
+    (1).should.be.truthy;
+    (0).should.not.be.truthy;
+    
+    err(function(){
+      ''.should.be.truthy;
+    }, "expected '' to be truthy");
+    
+    err(function(){
+      'test'.should.not.be.truthy;
+    }, "expected 'test' to be falsy");
+  },
+  
   'test ok': function(){
     true.should.be.ok;
     false.should.not.be.ok;
@@ -51,7 +66,7 @@ module.exports = {
     
     err(function(){
       'test'.should.not.be.ok;
-    }, "expected 'test' to be falsey");
+    }, "expected 'test' to be falsy");
   },
   
   'test false': function(){
@@ -62,6 +77,21 @@ module.exports = {
     err(function(){
       ''.should.be.false;
     }, "expected '' to be false")
+  },
+  
+  'test falsy': function(){
+    false.should.be.falsy;
+    true.should.not.be.falsy;
+    (0).should.be.falsy;
+    (1).should.not.be.falsy;
+    
+    err(function(){
+      'test'.should.be.falsy;
+    }, "expected 'test' to be falsy");
+    
+    err(function(){
+      ''.should.not.be.falsy;
+    }, "expected '' to be truthy");
   },
   
   'test arguments': function(){
