@@ -163,7 +163,7 @@ module.exports = {
     
     err(function(){
       (4).should.eql(3);
-    }, 'expected 4 to equal 3');
+    }, 'expected 4 to mirror 3');
   },
   
   'test mirror(val)': function(){
