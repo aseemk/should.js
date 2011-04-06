@@ -10,7 +10,8 @@ function err(fn, msg) {
     fn();
     should.fail('expected an error');
   } catch (err) {
-    should.equal(msg, err.message);
+    should.exist(err.message);
+    err.message.should.equal(msg);
   }
 }
 
@@ -163,6 +164,17 @@ module.exports = {
     err(function(){
       (4).should.eql(3);
     }, 'expected 4 to equal 3');
+  },
+  
+  'test mirror(val)': function(){
+    'test'.should.mirror('test');
+    ({ foo: 'bar' }).should.mirror({ foo: 'bar' });
+    (1).should.mirror(1);
+    '4'.should.mirror(4);
+    
+    err(function(){
+      (4).should.mirror(3);
+    }, 'expected 4 to mirror 3');
   },
   
   'test equal(val)': function(){
