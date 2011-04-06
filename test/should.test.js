@@ -29,6 +29,27 @@ module.exports = {
     should.equal('foo', 'foo');
   },
   
+  'test existence': function(){
+    should.exist('test');
+    should.exist(0);
+    should.exist('');
+    
+    should.not.exist(null);
+    should.not.exist(undefined);
+    
+    err(function(){
+      should.exist(null);
+    }, "expected null to exist");
+    
+    err(function(){
+      should.not.exist(false);
+    }, "expected false to not exist");
+    
+    err(function(){
+      should.not.exist('', 'test assertion message!');
+    }, 'test assertion message!');
+  },
+  
   'test true': function(){
     true.should.be.true;
     false.should.not.be.true;
