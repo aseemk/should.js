@@ -103,15 +103,23 @@ equality:
     ({ foo: 'bar' }).should.eql({ foo: 'bar' })
     [1,2,3].should.eql([1,2,3])
 
-## equal
+## equal / exactly
 
 strict equality:
 
-    should.strictEqual(undefined, value)
-    should.strictEqual(false, value)
     (4).should.equal(4)
+    "4".should.not.equal(4)
+    
+    (1).should.not.equal(true)
+    (0).should.not.equal(false)
+    
     'test'.should.equal('test')
     [1,2,3].should.not.equal([1,2,3])
+
+Aliases: _exactly_
+
+    choice.should.be.exactly(false)
+    output.should.be.exactly("0")
 
 ## within
 
