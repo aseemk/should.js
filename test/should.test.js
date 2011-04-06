@@ -169,12 +169,31 @@ module.exports = {
     'test'.should.equal('test');
     (1).should.equal(1);
     
+    (1).should.not.equal(true);
+    false.should.not.equal(0);
+    
     err(function(){
       (4).should.equal(3);
     }, 'expected 4 to equal 3');
     
     err(function(){
       '4'.should.equal(4);
+    }, "expected '4' to equal 4");
+  },
+  
+  'test exactly(val)': function(){
+    'test'.should.be.exactly('test');
+    (1).should.be.exactly(1);
+    
+    (1).should.not.be.exactly(true);
+    false.should.not.be.exactly(0);
+    
+    err(function(){
+      (4).should.be.exactly(3);
+    }, 'expected 4 to equal 3');
+    
+    err(function(){
+      '4'.should.be.exactly(4);
     }, "expected '4' to equal 4");
   },
   
