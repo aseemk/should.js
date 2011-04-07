@@ -27,6 +27,10 @@ module.exports = {
   'test assertion': function(){
     'test'.should.be.a.string;
     should.equal('foo', 'foo');
+    
+    err(function(){
+      should.fail('custom failure message');
+    }, 'custom failure message');
   },
   
   'test existence': function(){
@@ -313,6 +317,28 @@ module.exports = {
     }, "expected 'asd' to have a property 'foo'");
   },
   
+  'test expose(name)': function(){
+    'test'.should.expose('length');
+    'asd'.should.expose('constructor');
+    
+    err(function(){
+      'asd'.should.expose('foo');
+    }, "expected 'asd' to expose 'foo'");
+    
+    [].should.expose('length');
+    [].should.not.expose('0');
+    
+    [null].should.expose('0');
+    ({bool: false}).should.expose('bool');
+    
+    'asd'.should.not.expose('foo');
+    [null].should.not.expose('1');
+    
+    err(function(){
+      [null].should.not.expose(0);
+    }, "expected [ null ] to not expose 0")
+  },
+  
   'test property(name, val)': function(){
     'test'.should.have.property('length', 4);
     'asd'.should.have.property('constructor', String);
@@ -324,6 +350,12 @@ module.exports = {
     err(function(){
       'asd'.should.not.have.property('length', 3);
     }, "expected 'asd' to not have a property 'length' of 3");
+    
+    err(function(){
+      'asd'.should.have.property('foo');
+    }, "expected 'asd' to have a property 'foo'");
+    
+    'asd'.should.not.have.property('foo');
     
     err(function(){
       'asd'.should.not.have.property('foo', 3);
@@ -462,5 +494,46 @@ module.exports = {
     }, "expected [ 'tobi', 'loki', 'jane', 'bandit' ] to have a length of 5 but got 4");
  
     user.should.be.a('object').and.have.property('name', 'tj');
+  },
+  
+  'test messages': function(){
+    err(function(){
+      true.should.equal(1, 'strict equality');
+    }, 'strict equality');
+    
+    err(function(){
+      'hello'.should.match(/world/, 'regexp no match!');
+    }, 'regexp no match!');
+    
+    err(function(){
+      Function.should.not.respondTo('bind', 'yes it should');
+    }, 'yes it should');
+    
+    err(function(){
+      [1,2,3].should.expose(4, 'range error');
+    }, 'range error');
+    
+    err(function(){
+      [1,2,3].should.have.property('0', 0, 'zero-based indexing');
+    }, 'zero-based indexing');
+    
+    err(function(){
+      [1,2,3].should.not.have.property('0', 1, 'two wrongs a right do not make');
+    }, 'two wrongs a right do not make');
+    
+    // note that this case should *not* use our custom message; it's an error.
+    // TODO perhaps this behavior should change; this could be an assertion.
+    err(function(){
+      [1,2,3].should.not.have.property('3', 4, 'five-o hawaii');
+    }, "[ 1, 2, 3 ] has no property '3'");
+    
+    err(function(){
+      ({foo: 'bar'}).should.not.include.keys(['foo'], 'array message');
+    }, 'array message');
+    
+    // note that this case should *not* use our custom message; variable number of keys.
+    err(function(){
+      ({foo: 'bar'}).should.have.keys('foo', 'varargs message');
+    }, "expected { foo: 'bar' } to have keys 'foo', and 'varargs message'");
   }
 };

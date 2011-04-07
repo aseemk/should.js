@@ -17,7 +17,7 @@ _should_ literally extends node's _assert_ module, in fact, it is node's assert 
     someAsyncTask(foo, function (err, result) {
         should.not.exist(err);
         should.exist(result);
-        result.bar.should.equal(foo);
+        result.bar.should.equal(foo, 'why the heck would they not be equal?!');
     });
 
 ## Installation
@@ -43,6 +43,26 @@ which is essentially equivalent to below, however the property may not exist:
 our dummy getters such as _and_ also help express chaining:
 
     user.should.be.a('object').and.have.property('name', 'tj')
+
+## messages
+
+All assertion methods accept an optional message as the last parameter, which gets used instead of the default message in case the assertion fails.
+
+    result.should.respondTo('serialize', 'Non-serializable result.')
+
+Note that this only applies to methods that take an argument and not to properties like `ok` or `empty` currently.
+
+There are two gotchas to be aware of:
+
+    // to assert that foo has property bar with a custom message,
+    // use expose() instead of property():
+    foo.should.expose('bar', 'custom message')
+    
+    // to assert that foo has or includes one or more keys with a custom message,
+    // pass the keys as an array instead of separate args:
+    foo.should.include.keys(['bar'], 'custom message')
+
+See _property_ and _keys_ for details.
 
 ## exist (static)
 
@@ -209,6 +229,17 @@ Substring assertion:
     'foobar'.should.include.string('bar')
     'foobar'.should.not.include.string('baz')
 
+## expose
+
+Assert the object exposes a given property or method:
+
+    user.should.expose('name')
+    [1,2,3].should.expose('forEach')
+
+This is similar to _property_, except it doesn't take an optional value, allowing you to more naturally pass a custom assertion message:
+
+    arguments.should.expose('caller', 'are we in ES5 strict mode?')
+
 ## property
 
 Assert property exists and has optional value:
@@ -217,6 +248,14 @@ Assert property exists and has optional value:
     user.should.have.property('age', 15)
     user.should.not.have.property('rawr')
     user.should.not.have.property('age', 0)
+
+Note that if you want to assert with a custom message, you _must_ pass a value. If you only want to assert that the property exists, use _expose_:
+
+    // wrong: this will assert that foo.bar === 'custom message'
+    foo.should.have.property('bar', 'custom message')
+    
+    // right: this will assert that foo.bar exists
+    foo.should.expose('bar', 'custom message')
 
 ## ownProperty
 
@@ -247,6 +286,14 @@ but not fail when we omit a few:
     obj.should.include.keys('foo')
     obj.should.include.keys('bar')
     obj.should.not.include.keys('baz')
+
+Note that if you want to assert with a custom message, you must pass the keys as an array.
+
+    // wrong: this will assert that foo has 'custom message' as a key
+    foo.should.have.keys('bar', 'custom message')
+    
+    // right: this will assert that foo has the given keys
+    foo.should.have.keys(['bar'], 'custom message')
 
 ## respondTo
 
