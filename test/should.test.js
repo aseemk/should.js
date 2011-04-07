@@ -55,74 +55,74 @@ module.exports = {
   },
   
   'test true': function(){
-    true.should.be.true;
-    false.should.not.be.true;
-    (1).should.not.be.true;
+    true.should.be.true();
+    false.should.not.be.true();
+    (1).should.not.be.true();
     
     err(function(){
-      'test'.should.be.true;
+      'test'.should.be.true();
     }, "expected 'test' to be true")
   },
   
   'test truthy': function(){
-    true.should.be.truthy;
-    false.should.not.be.truthy;
-    (1).should.be.truthy;
-    (0).should.not.be.truthy;
+    true.should.be.truthy();
+    false.should.not.be.truthy();
+    (1).should.be.truthy();
+    (0).should.not.be.truthy();
     
     err(function(){
-      ''.should.be.truthy;
+      ''.should.be.truthy();
     }, "expected '' to be truthy");
     
     err(function(){
-      'test'.should.not.be.truthy;
+      'test'.should.not.be.truthy();
     }, "expected 'test' to be falsy");
   },
   
   'test ok': function(){
-    true.should.be.ok;
-    false.should.not.be.ok;
-    (1).should.be.ok;
-    (0).should.not.be.ok;
+    true.should.be.ok();
+    false.should.not.be.ok();
+    (1).should.be.ok();
+    (0).should.not.be.ok();
     
     err(function(){
-      ''.should.be.ok;
+      ''.should.be.ok();
     }, "expected '' to be truthy");
     
     err(function(){
-      'test'.should.not.be.ok;
+      'test'.should.not.be.ok();
     }, "expected 'test' to be falsy");
   },
   
   'test false': function(){
-    false.should.be.false;
-    true.should.not.be.false;
-    (0).should.not.be.false;
+    false.should.be.false();
+    true.should.not.be.false();
+    (0).should.not.be.false();
     
     err(function(){
-      ''.should.be.false;
+      ''.should.be.false();
     }, "expected '' to be false")
   },
   
   'test falsy': function(){
-    false.should.be.falsy;
-    true.should.not.be.falsy;
-    (0).should.be.falsy;
-    (1).should.not.be.falsy;
+    false.should.be.falsy();
+    true.should.not.be.falsy();
+    (0).should.be.falsy();
+    (1).should.not.be.falsy();
     
     err(function(){
-      'test'.should.be.falsy;
+      'test'.should.be.falsy();
     }, "expected 'test' to be falsy");
     
     err(function(){
-      ''.should.not.be.falsy;
+      ''.should.not.be.falsy();
     }, "expected '' to be truthy");
   },
   
   'test arguments': function(){
     var args = (function(){ return arguments; })(1,2,3);
-    args.should.be.arguments;
-    [].should.not.be.arguments;
+    args.should.be.arguments();
+    [].should.not.be.arguments();
   },
   
   'test .equal()': function(){
@@ -291,20 +291,20 @@ module.exports = {
   },
   
   'test empty': function(){
-    ''.should.be.empty;
-    [].should.be.empty;
-    ({ length: 0 }).should.be.empty;
+    ''.should.be.empty();
+    [].should.be.empty();
+    ({ length: 0 }).should.be.empty();
     
     err(function(){
-      ({}).should.be.empty;
+      ({}).should.be.empty();
     }, 'expected {} to have a property \'length\'');
     
     err(function(){
-      'asd'.should.be.empty;
+      'asd'.should.be.empty();
     }, "expected 'asd' to be empty");
     
     err(function(){
-      ''.should.not.be.empty;
+      ''.should.not.be.empty();
     }, "expected '' not to be empty");
   },
   
@@ -497,6 +497,10 @@ module.exports = {
   },
   
   'test messages': function(){
+    err(function(){
+      false.should.be.truthy('false is most definitely not truthy');
+    }, 'false is most definitely not truthy');
+    
     err(function(){
       true.should.equal(1, 'strict equality');
     }, 'strict equality');
