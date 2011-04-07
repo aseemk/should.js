@@ -55,44 +55,44 @@ module.exports = {
   },
   
   'test true': function(){
-    true.should.be.true;
-    false.should.not.be.true;
-    (1).should.not.be.true;
+    true.should.be.true();
+    false.should.not.be.true();
+    (1).should.not.be.true();
     
     err(function(){
-      'test'.should.be.true;
+      'test'.should.be.true();
     }, "expected 'test' to be true")
   },
   
   'test ok': function(){
-    true.should.be.ok;
-    false.should.not.be.ok;
-    (1).should.be.ok;
-    (0).should.not.be.ok;
+    true.should.be.ok();
+    false.should.not.be.ok();
+    (1).should.be.ok();
+    (0).should.not.be.ok();
     
     err(function(){
-      ''.should.be.ok;
+      ''.should.be.ok();
     }, "expected '' to be truthy");
     
     err(function(){
-      'test'.should.not.be.ok;
+      'test'.should.not.be.ok();
     }, "expected 'test' to be falsey");
   },
   
   'test false': function(){
-    false.should.be.false;
-    true.should.not.be.false;
-    (0).should.not.be.false;
+    false.should.be.false();
+    true.should.not.be.false();
+    (0).should.not.be.false();
     
     err(function(){
-      ''.should.be.false;
+      ''.should.be.false();
     }, "expected '' to be false")
   },
   
   'test arguments': function(){
     var args = (function(){ return arguments; })(1,2,3);
-    args.should.be.arguments;
-    [].should.not.be.arguments;
+    args.should.be.arguments();
+    [].should.not.be.arguments();
   },
   
   'test .equal()': function(){
@@ -205,20 +205,20 @@ module.exports = {
   },
   
   'test empty': function(){
-    ''.should.be.empty;
-    [].should.be.empty;
-    ({ length: 0 }).should.be.empty;
+    ''.should.be.empty();
+    [].should.be.empty();
+    ({ length: 0 }).should.be.empty();
     
     err(function(){
-      ({}).should.be.empty;
+      ({}).should.be.empty();
     }, 'expected {} to have a property \'length\'');
     
     err(function(){
-      'asd'.should.be.empty;
+      'asd'.should.be.empty();
     }, "expected 'asd' to be empty");
     
     err(function(){
-      ''.should.not.be.empty;
+      ''.should.not.be.empty();
     }, "expected '' not to be empty");
   },
   
@@ -411,6 +411,10 @@ module.exports = {
   },
   
   'test messages': function(){
+    err(function(){
+      false.should.be.ok('false is most definitely not okay');
+    }, 'false is most definitely not okay');
+    
     err(function(){
       true.should.equal(1, 'strict equality');
     }, 'strict equality');
