@@ -50,8 +50,6 @@ All assertion methods accept an optional message as the last parameter, which ge
 
     result.should.respondTo('serialize', 'Non-serializable result.')
 
-Note that this only applies to methods that take an argument and not to properties like `ok` or `empty` currently.
-
 There are two gotchas to be aware of:
 
     // to assert that foo has property bar with a custom message,
@@ -90,9 +88,9 @@ Once you know an object exists, you can safely use the _should_ property on it.
 
 Assert truthfulness:
 
-    true.should.be.truthy
-    'yay'.should.be.truthy
-    (1).should.be.truthy
+    true.should.be.truthy()
+    'yay'.should.be.truthy()
+    (1).should.be.truthy()
 
 Aliases: _ok_
 
@@ -100,43 +98,41 @@ Aliases: _ok_
 
 The negation of _truthy_:
 
-    false.should.be.falsy
-    ''.should.be.falsy
-    (0).should.be.falsy
+    false.should.be.falsy()
+    ''.should.be.falsy()
+    (0).should.be.falsy()
 
 Aliases: _not.ok_
-
-    false.should.not.be.ok
 
 ## true
 
 Assert === true:
 
-    true.should.be.true
-    '1'.should.not.be.true
+    true.should.be.true()
+    '1'.should.not.be.true()
 
 ## false
 
 Assert === false:
 
-     false.should.be.false
-     (0).should.not.be.false
+     false.should.be.false()
+     (0).should.not.be.false()
 
 ## arguments
 
 Assert `Arguments`:
 
     var args = (function(){ return arguments; })(1,2,3);
-    args.should.be.arguments;
-    [].should.not.be.arguments;
+    args.should.be.arguments();
+    [].should.not.be.arguments();
 
 ## empty
 
 Asserts that length is 0:
 
-    [].should.be.empty
-    ''.should.be.empty
-    ({ length: 0 }).should.be.empty
+    [].should.be.empty()
+    ''.should.be.empty()
+    ({ length: 0 }).should.be.empty()
 
 ## mirror
 
