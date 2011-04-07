@@ -1,9 +1,10 @@
 @aseemk's changes
 =================
 
-This is my fork of @visionmedia's excellent **[should.js]** project.
+This is my fork of [@visionmedia]'s (TJ's) excellent **[should.js]** project.
 I've extended it with the following features:
 
+[@visionmedia]: https://github.com/visionmedia
 [should.js]: https://github.com/visionmedia/should.js
 
 * Static `should.exist()` and `should.not.exist()` methods to safely test whether
@@ -19,7 +20,7 @@ I've extended it with the following features:
   `ok()` and `empty()`. This makes the assertions more explicit IMHO, but it also
   gives them support for custom messages.  **This is a breaking change.**
   ([Thoughts](https://github.com/visionmedia/should.js/issues/9) on making this
-  change backwards-compatible, but no plans to do so; not submitted yet.)
+  change backwards-compatible, but no plans to do so yet; not submitted yet.)
 
 * Aliases for a few methods that are more explicit and readable IMHO:
   
