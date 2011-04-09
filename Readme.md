@@ -66,6 +66,18 @@ For this case, `require('should')` extends `require('assert')` with extra conven
 
 Once you know an object exists, you can safely use the _should_ property on it.
 
+## defined (static)
+
+If you only care to test whether an object is undefined (i.e. null is okay):
+
+    should.be.defined(foo)
+    should.be.undefined(foo)
+
+Their negations are also available as aliases:
+
+    should.not.be.defined(foo)      // alias for should.be.undefined
+    should.not.be.undefined(foo)    // alias for should.be.defined
+
 ## ok
 
 Assert truthfulness:
