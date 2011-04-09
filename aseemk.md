@@ -37,6 +37,9 @@ I've extended it with the following features:
   ([Details](https://github.com/visionmedia/should.js/issues/12);
   submitted as part of the custom messages pull request.)
 
+* A static `should.be.defined(foo)` for when null is ok but undefined is not.
+  Similarly, a static `should.be.undefined(foo)`.
+
 Major hat tip to TJ for the awesome and inspirational library.
 
 
@@ -52,9 +55,6 @@ In no particular order, more things I'd like to add:
 * More and smarter aliases. E.g. `a` and `an` (assuming both were flexible as
   described above) should cover both the `typeof` and `instanceof` cases, just
   based on whether the argument is a string or (constructor) function.
-
-* A static `should.be.defined(foo)` for when null is ok but undefined is not.
-  (I'm wanting this right now on a project.)
 
 * Monkey-patch the static `should.equal()`, AKA the native `assert.equal()`, to
   use strict equality, to match the instance `foo.should.equal(bar)`.

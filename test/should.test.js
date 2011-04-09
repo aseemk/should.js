@@ -54,6 +54,44 @@ module.exports = {
     }, 'test assertion message!');
   },
   
+  'test [un]defined': function(){
+    should.be.defined('test');
+    should.be.defined(0);
+    should.be.defined(null);
+    
+    should.not.be.defined(undefined);
+    
+    should.not.be.undefined('test');
+    should.not.be.undefined(false);
+    should.not.be.undefined('');
+    
+    should.be.undefined(undefined);
+    
+    err(function(){
+      should.be.defined(undefined);
+    }, 'expected undefined to be defined');
+    
+    err(function(){
+      should.not.be.defined(null);
+    }, 'expected null to be undefined');
+    
+    err(function(){
+      should.not.be.defined(false, 'test assertion message');
+    }, 'test assertion message');
+    
+    err(function(){
+      should.be.undefined(null);
+    }, 'expected null to be undefined');
+    
+    err(function(){
+      should.not.be.undefined(undefined);
+    }, 'expected undefined to be defined');
+    
+    err(function(){
+      should.be.undefined({}, 'test assertion message');
+    }, 'test assertion message');
+  },
+  
   'test true': function(){
     true.should.be.true();
     false.should.not.be.true();
