@@ -38,3 +38,28 @@ I've extended it with the following features:
   submitted as part of the custom messages pull request.)
 
 Major hat tip to TJ for the awesome and inspirational library.
+
+
+More ideas
+----------
+
+In no particular order, more things I'd like to add:
+
+* The holy grail: support a much more flexible language by having everything
+  support being both a dummy getter and an assertion method that can be called.
+  E.g. `be` in both `foo.should.be(bar)` and `foo.should.be.a('string')`.
+
+* More and smarter aliases. E.g. `a` and `an` (assuming both were flexible as
+  described above) should cover both the `typeof` and `instanceof` cases, just
+  based on whether the argument is a string or (constructor) function.
+
+* A static `should.be.defined(foo)` for when null is ok but undefined is not.
+  (I'm wanting this right now on a project.)
+
+* Monkey-patch the static `should.equal()`, AKA the native `assert.equal()`, to
+  use strict equality, to match the instance `foo.should.equal(bar)`.
+
+* Improve the custom message support to still inspect and output the expected and
+  actual values, in addition to my custom message, in a nice format.
+
+If you would especially like to see any of these things, just let me know.
