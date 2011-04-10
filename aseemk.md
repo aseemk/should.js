@@ -38,7 +38,12 @@ I've extended it with the following features:
   submitted as part of the custom messages pull request.)
 
 * A static `should.be.defined(foo)` for when null is ok but undefined is not.
-  Similarly, a static `should.be.undefined(foo)`.
+  Similarly, a static `should.be.undefined(foo)`. (Not submitted yet.)
+
+* Automatic detection for the common `should.not.exist(err)` use case: no need
+  to pass in a custom assertion message; it just uses the error itself.
+  ([Pull request](https://github.com/visionmedia/should.js/pull/14);
+  submitted as an extension to the should.exist() feature.)
 
 Major hat tip to TJ for the awesome and inspirational library.
 
