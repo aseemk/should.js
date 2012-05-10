@@ -1,4 +1,20 @@
 
+0.3.2 / 2011-10-24 
+==================
+
+  * Fixed tests for 0.5.x
+  * Fixed sys warning
+
+0.3.1 / 2011-08-22 
+==================
+
+  * configurable
+
+0.3.0 / 2011-08-20 
+==================
+
+  * Added assertion for inclusion of an object: `foo.should.include.object({ foo: 'bar' })`
+
 0.2.1 / 2011-05-13 
 ==================
 

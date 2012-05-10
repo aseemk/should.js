@@ -264,6 +264,15 @@ This is similar to _property_, except it doesn't take an optional value, allowin
 
     arguments.should.expose('caller', 'are we in ES5 strict mode?')
 
+## object
+
+Assert inclusion of object:
+
+    var obj = {foo: 'bar', baz: {baaz: 42}};
+    obj.should.include.object({foo: 'bar'});
+    obj.should.include.object({baz: {baaz: 42}});
+    obj.should.not.include.object({foo: 'baz'});
+
 ## property
 
 Assert property exists and has optional value:
